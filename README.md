@@ -1,4 +1,4 @@
-# react-supinfo
+# supinfo-react
 
 # For localhost
 - npm install
