@@ -12,8 +12,8 @@
 
 # Dependancies install
 
-- npm install --save react-router-dom@6.2.2
-- npm install --save react-bootstrap bootstrap@2.2.1
+- react-router-dom@6.2.2
+- react-bootstrap bootstrap@2.2.1
 
 # To-do
 
