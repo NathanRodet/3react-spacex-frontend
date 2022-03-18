@@ -1,0 +1,98 @@
+{
+  "details": "Second GTO launch for Falcon 9. The USAF evaluated launch data from this flight as part of a separate certification program for SpaceX to qualify to fly U.S. military payloads and found that the Thaicom 6 launch had \"unacceptable fuel reserves at engine cutoff of the stage 2 second burnoff\"",
+  "id": "13",
+  "is_tentative": false,
+  "launch_date_local": "2014-01-06T14:06:00-04:00",
+  "launch_date_unix": 1389031560,
+  "launch_date_utc": "2014-01-06T18:06:00.000Z",
+  "launch_site": {
+    "site_id": "ccafs_slc_40",
+    "site_name_long": "Cape Canaveral Air Force Station Space Launch Complex 40",
+    "site_name": "CCAFS SLC 40"
+  },
+  "launch_success": true,
+  "launch_year": "2014",
+  "links": {
+    "article_link": "http://spacenews.com/38959spacex-delivers-thaicom-6-satellite-to-orbit/",
+    "flickr_images": [
+      "https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg",
+      "https://farm8.staticflickr.com/7619/16763151866_35a0a4d8e1_o.jpg",
+      "https://farm9.staticflickr.com/8569/16169086873_4d8829832e_o.png"
+    ],
+    "mission_patch_small": "https://images2.imgbox.com/d8/6d/fnqIBEJh_o.png",
+    "mission_patch": "https://images2.imgbox.com/37/c4/jRAk115c_o.png",
+    "presskit": "http://www.spacex.com/sites/spacex/files/spacex_thaicom6_presskit.pdf",
+    "reddit_campaign": null,
+    "reddit_launch": "http://www.reddit.com/r/spacex/comments/1ujoc0",
+    "reddit_media": null,
+    "reddit_recovery": null,
+    "video_link": "https://www.youtube.com/watch?v=AnSNRzMEmCU",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thaicom_6"
+  },
+  "mission_id": [
+    "9D1B7E0"
+  ],
+  "mission_name": "Thaicom 6",
+  "rocket": {
+    "fairings": {
+      "recovered": false,
+      "recovery_attempt": false,
+      "reused": false,
+      "ship": null
+    },
+    "first_stage": {
+      "cores": [
+        {
+          "block": 1,
+          "core": {
+            "asds_attempts": 0,
+            "asds_landings": 0,
+            "block": 1,
+            "id": "B1005",
+            "missions": [
+              {
+                "flight": 13,
+                "name": "Thaicom 6"
+              }
+            ],
+            "original_launch": "2014-01-06T18:06:00.000Z",
+            "reuse_count": 0,
+            "rtls_attempts": 0,
+            "rtls_landings": 0,
+            "status": "lost",
+            "water_landing": false
+          },
+          "flight": 1,
+          "gridfins": false,
+          "land_success": null,
+          "landing_intent": false,
+          "landing_type": null,
+          "landing_vehicle": null,
+          "legs": false,
+          "reused": false
+        }
+      ]
+    },
+    "rocket_name": "Falcon 9",
+    "rocket_type": "v1.1",
+    "rocket": {
+      "id": "falcon9"
+    },
+    "second_stage": {
+      "block": 1,
+      "payloads": [
+        {
+          "id": null
+        }
+      ]
+    }
+  },
+  "static_fire_date_unix": 1388188800,
+  "static_fire_date_utc": "2013-12-28T00:00:00.000Z",
+  "telemetry": {
+    "flight_club": null
+  },
+  "tentative_max_precision": "hour",
+  "upcoming": false,
+  "ships": []
+}

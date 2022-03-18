@@ -1,0 +1,8 @@
+ul .LaunchesList-list{
+  padding-left: 5% !important;
+}
+
+.LaunchesList-item{
+  display: flex;
+  flex-direction: column;
+}

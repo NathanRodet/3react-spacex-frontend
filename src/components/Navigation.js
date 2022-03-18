@@ -8,10 +8,10 @@ export default function Navigation() {
       <nav className="Navigation-bar">
         <ul className="Navigation-list">
           <li className="Navigation-item">
-            <Link className="Navigation-link" to="/">Home</Link>
+            <Link className="Navigation-link" activestyle="active" to="/">Home</Link>
           </li>
           <li>
-            <Link className="Navigation-link" to="Launches">Launches</Link>
+            <Link className="Navigation-link" activestyle="active" to="/Launches">Launches</Link>
           </li>
         </ul >
       </nav >
