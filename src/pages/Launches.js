@@ -9,16 +9,23 @@ export default function Launches() {
   const [appState, setAppState] = useState({
     loading: false,
     launches: null,
+    error: null,
   });
 
   useEffect(() => {
     setAppState({ loading: true });
     const apiUrl = `https://api.spacex.land/rest/launches`;
+
     fetch(apiUrl)
       .then((res) => res.json())
-      .then((launches) => {
-        setAppState({ loading: false, launches: launches });
-      });
+      .then(
+        (launches) => {
+          setAppState({ loading: false, launches: launches });
+        },
+        (error) => {
+          setAppState({ loading: false, error });
+        }
+      );
   }, [setAppState]);
 
   return (

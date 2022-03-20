@@ -6,3 +6,13 @@ ul .LaunchesList-list{
   display: flex;
   flex-direction: column;
 }
+
+.LaunchesList-card {
+  border-bottom: 1px solid;
+  padding-top: 15px;
+}
+
+.Launches-button{
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
