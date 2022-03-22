@@ -12,7 +12,7 @@ ul .LaunchesList-list{
   padding-top: 15px;
 }
 
-.Launches-button{
-  padding-top: 20px;
-  padding-bottom: 30px;
+.LaunchesList-head{
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
 }

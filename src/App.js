@@ -11,7 +11,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Launches" element={<Launches />} />
+        <Route path="/Launches" element={<Launches />}>
+        </Route>
         <Route path="*" element={<Notfound />} />
       </Routes>
     </div>

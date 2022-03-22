@@ -3,35 +3,14 @@ import '../styles/components/launcheslist.css';
 
 export default function LaunchesList(launchesProps) {
   const { launches } = launchesProps;
-  let launchesUsedData = launches;
+  // console.log(launches + "data");
 
   if (!launches || launches.length === 0) return <p>No Launches to display, sorry</p>;
-
-  let minLaunches = 0;
-  let maxLaunches = 10;
-
-  function nextLaunches() {
-    minLaunches += 10;
-    maxLaunches += 10;
-    launchesUsedData = launches;
-    console.log(minLaunches);
-    console.log(maxLaunches);
-  }
-  function lastLaunches() {
-    if (minLaunches > 10) {
-      minLaunches -= 10;
-      maxLaunches -= 10;
-      launchesUsedData = launches;
-    }
-    console.log(minLaunches);
-    console.log(maxLaunches);
-  }
 
   return (
     <div className="LaunchesList-component">
       <h2 className='LaunchesList-head'>Available Launches</h2>
-      {launchesUsedData.slice(minLaunches, maxLaunches).map((launch) => {
-        console.log(minLaunches, maxLaunches)
+      {launches.map((launch) => {
         return (
           <div key={launch.id} className="LaunchesList-card" >
             <ul className="LaunchesList-list">
@@ -45,10 +24,6 @@ export default function LaunchesList(launchesProps) {
           </div>
         );
       })}
-      <div className="Launches-button">
-        <button onClick={lastLaunches} > Last 10 </button>
-        <button onClick={nextLaunches} > Next 10 </button>
-      </div>
     </div >
   )
 

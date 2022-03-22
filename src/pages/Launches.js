@@ -5,28 +5,48 @@ import LaunchesList from '../components/LaunchesList';
 import WithListLoading from '../components/WithListLoading';
 
 export default function Launches() {
+
+  const [offset, setOffset] = useState(0);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const ListLoading = WithListLoading(LaunchesList);
-  const [appState, setAppState] = useState({
-    loading: false,
-    launches: null,
-    error: null,
-  });
 
-  useEffect(() => {
-    setAppState({ loading: true });
-    const apiUrl = `https://api.spacex.land/rest/launches`;
+  const fetchLaunches = async () => {
+    const response = await fetch(`https://api.spacex.land/rest/launches?&offset=${offset}&limit=10&order="asc"`);
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+    const Launches = await response.json();
+    setData(Launches);
+    setIsLoading(false);
+    // console.log(Launches);
+    return Launches;
+  }
 
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then(
-        (launches) => {
-          setAppState({ loading: false, launches: launches });
-        },
-        (error) => {
-          setAppState({ loading: false, error });
-        }
-      );
-  }, [setAppState]);
+  useEffect((offset) => {
+    const x = fetchLaunches(offset);
+    // console.log(x);
+    setData(x);
+  }, [])
+
+  async function nextLaunches() {
+    setIsLoading(true)
+    console.log(offset);
+    setOffset((offset) => (offset + 10))
+    const x = await fetchLaunches(offset);
+    setData(x);
+    return offset
+  }
+
+  async function lastLaunches() {
+    if (offset >= 10) {
+      setIsLoading(true)
+      setOffset((prev) => (prev - 10));
+      const x = await fetchLaunches(offset);
+      setData(x);
+    }
+  }
 
   return (
     <div className="Launches">
@@ -35,7 +55,15 @@ export default function Launches() {
       </div>
       <div className="Launches-body">
         <h1>Launches</h1>
-        <ListLoading isLoading={appState.loading} launches={appState.launches} />
+        <div className="Launches-button">
+          <button onClick={() => (lastLaunches)}> Previous Page </button>
+          <button onClick={nextLaunches}> Next Page </button>
+        </div>
+        <ListLoading isLoading={isLoading} launches={data} />
+        <div className="Launches-button">
+          <button onClick={() => (lastLaunches)}> Previous Page </button>
+          <button onClick={nextLaunches}> Next Page </button>
+        </div>
       </div>
     </div>
   )
