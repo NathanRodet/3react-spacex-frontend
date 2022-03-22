@@ -1,7 +1,8 @@
 *{
-  background-color: #243447;
-  color: white;
+  color: black;
 }
+
+@import '~antd/dist/antd.css';
 
 
 

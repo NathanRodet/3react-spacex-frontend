@@ -3,6 +3,7 @@ import Navigation from '../components/Navigation';
 import '../styles/pages/launches.css';
 import LaunchesList from '../components/LaunchesList';
 import WithListLoading from '../components/WithListLoading';
+import { Pagination } from 'antd';
 
 export default function Launches() {
 
@@ -12,7 +13,7 @@ export default function Launches() {
   const ListLoading = WithListLoading(LaunchesList);
 
   const fetchLaunches = async () => {
-    const response = await fetch(`https://api.spacex.land/rest/launches?&offset=${offset}&limit=10&order="asc"`);
+    const response = await fetch(`https://api.spacex.land/rest/launches?&offset=${offset}&limit=10`);
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
       throw new Error(message);
@@ -29,6 +30,12 @@ export default function Launches() {
     // console.log(x);
     setData(x);
   }, [])
+
+  const myPageChangedCallback = (pageNumber) => {
+    setOffset((pageNumber * 10) - 10)
+    const x = fetchLaunches(offset);
+    setData(x)
+  }
 
   async function nextLaunches() {
     setIsLoading(true)
@@ -58,6 +65,8 @@ export default function Launches() {
         <div className="Launches-button">
           <button onClick={() => (lastLaunches)}> Previous Page </button>
           <button onClick={nextLaunches}> Next Page </button>
+          <Pagination defaultCurrent={1} total={50} />
+
         </div>
         <ListLoading isLoading={isLoading} launches={data} />
         <div className="Launches-button">
