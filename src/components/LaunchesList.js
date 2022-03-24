@@ -1,30 +1,51 @@
 import React from 'react';
+import moment from 'moment';
 import '../styles/components/launcheslist.css';
+import { Table } from 'antd'
 
-export default function LaunchesList(launchesProps) {
-  const { launches } = launchesProps;
-  // console.log(launches + "data");
+export default function LaunchesList(props) {
+  console.log(props + "props")
+  const { launches } = props;
+  const { loading } = props;
 
-  if (!launches || launches.length === 0) return <p>No Launches to display, sorry</p>;
+  console.log(launches + " launchesList")
+  console.log(loading + " isLoading")
 
-  return (
-    <div className="LaunchesList-component">
-      <h2 className='LaunchesList-head'>Available Launches</h2>
-      {launches.map((launch) => {
-        return (
-          <div key={launch.id} className="LaunchesList-card" >
-            <ul className="LaunchesList-list">
-              <li className="LaunchesList-item">
-                <span id='LaunchesList-mission-name'> Mission Name : {launch.mission_name} </span>
-                <span id='LaunchesList-launch-success'> Is sucessful : {launch.launch_success ? "Yes" : "No"} </span>
-                <span id='LaunchesList-launch-year'> Launch Year : {launch.launch_year} </span>
-                <span id='LaunchesList-mission_id'> ID : {(launch.mission_id != "") ? launch.mission_id : "No ID detected"} </span>
-              </li>
-            </ul>
-          </div>
-        );
-      })}
-    </div >
-  )
+  if ((!launches || launches.length === 0) && loading === false) {
+    return <p>No Launches to display, sorry</p>;
+  }
 
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      width: '15%',
+    },
+    {
+      title: 'Mission Name',
+      dataIndex: 'mission_name',
+      width: '35%',
+    },
+    {
+      title: 'Success',
+      dataIndex: 'launch_success',
+      width: '15%',
+      render: (launch_success) => (launch_success) ? 'Yes' : 'No',
+    },
+    {
+      title: 'Date',
+      dataIndex: 'launch_date_unix',
+      width: '35%',
+      sorter:
+        (a, b) => a.launch_date_unix - b.launch_date_unix,
+      render: (launch_date_unix) => (moment.unix(launch_date_unix).format("MM/DD/YYYY"))
+    }
+  ];
+
+  function onChange(pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra);
+  }
+
+  return (<Table columns={columns} key={(prev) => prev + 1} dataSource={launches} onChange={onChange} />)
 }
