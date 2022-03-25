@@ -1,9 +1,5 @@
-.Launches-body {
-  padding-left: 15%;
-  padding-right: 15%;
-}
-
-.Launches-button{
-  padding-top: 20px;
-  padding-bottom: 30px;
+#Launches-head{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }

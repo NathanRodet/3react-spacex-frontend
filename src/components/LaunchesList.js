@@ -1,15 +1,12 @@
 import React from 'react';
 import moment from 'moment';
-import '../styles/components/launcheslist.css';
-import { Table } from 'antd'
+import { Table, Button, Input, } from 'antd';
+import { SearchOutlined } from "@ant-design/icons";
+import uuid from 'react-uuid';
 
 export default function LaunchesList(props) {
-  console.log(props + "props")
   const { launches } = props;
   const { loading } = props;
-
-  console.log(launches + " launchesList")
-  console.log(loading + " isLoading")
 
   if ((!launches || launches.length === 0) && loading === false) {
     return <p>No Launches to display, sorry</p>;
@@ -26,6 +23,60 @@ export default function LaunchesList(props) {
       title: 'Mission Name',
       dataIndex: 'mission_name',
       width: '35%',
+      filterDropdown: ({
+        setSelectedKeys,
+        selectedKeys,
+        confirm,
+        clearFilters,
+      }) => {
+        return (
+          <>
+            <Input
+              autoFocus
+              placeholder="Type text here"
+              value={selectedKeys[0]}
+              onChange={(e) => {
+                setSelectedKeys(e.target.value ? [e.target.value] : []);
+                confirm({ closeDropdown: false });
+              }}
+              onPressEnter={() => {
+                confirm();
+              }}
+              onBlur={() => {
+                confirm();
+              }}
+            ></Input>
+            <Button
+              onClick={() => {
+                confirm();
+              }}
+              type="primary"
+            >
+              Search
+            </Button>
+            <Button
+              onClick={() => {
+                clearFilters();
+              }}
+              type="danger"
+            >
+              Reset
+            </Button>
+          </>
+        );
+      },
+      filterIcon: () => {
+        return <SearchOutlined />;
+      },
+      onFilter: (value, record) => {
+        return record.mission_name.toLowerCase().includes(value.toLowerCase());
+      },
+    },
+    {
+      title: 'Mission ID',
+      dataIndex: 'mission_id',
+      width: '20%',
+      render: (mission_id) => (mission_id != "") ? mission_id : 'No ID detected',
     },
     {
       title: 'Success',
@@ -36,7 +87,7 @@ export default function LaunchesList(props) {
     {
       title: 'Date',
       dataIndex: 'launch_date_unix',
-      width: '35%',
+      width: '15%',
       sorter:
         (a, b) => a.launch_date_unix - b.launch_date_unix,
       render: (launch_date_unix) => (moment.unix(launch_date_unix).format("MM/DD/YYYY"))
@@ -47,5 +98,5 @@ export default function LaunchesList(props) {
     console.log('params', pagination, filters, sorter, extra);
   }
 
-  return (<Table columns={columns} key={(prev) => prev + 1} dataSource={launches} onChange={onChange} />)
+  return (<Table columns={columns} rowKey={() => uuid()} dataSource={launches} onChange={onChange} />)
 }

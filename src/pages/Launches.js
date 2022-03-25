@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Navigation from '../components/Navigation';
 import getLaunches from '../api/getLaunches';
-import LaunchesList from '../components/LaunchesList'
+import LaunchesList from '../components/LaunchesList';
 import '../styles/pages/launches.css';
+import { Layout } from 'antd';
+
+const { Header, Content } = Layout;
 
 export default function Launches() {
 
@@ -15,8 +18,6 @@ export default function Launches() {
       try {
         const x = await getLaunches();
         setData(x)
-        console.log(x);
-
       } catch (e) {
         console.log(e)
       }
@@ -26,14 +27,14 @@ export default function Launches() {
   }, [])
 
   return (
-    <div className="Launches">
-      <div className="Launches-header">
+    <Layout>
+      <Header className="Notfound-header">
         <Navigation />
-      </div>
-      <div className="Launches-body">
-        <h1>Launches</h1>
+      </Header>
+      <Content>
+        <h1 id="Launches-head">Launches</h1>
         <LaunchesList launches={data} loading={isLoading} />
-      </div>
-    </div>
+      </Content>
+    </Layout>
   )
 }
