@@ -13,18 +13,22 @@ export default function Launches() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const getLaunchesData = async () => {
-      setIsLoading(true);
-      try {
-        const x = await getLaunches();
-        setData(x)
-      } catch (e) {
-        console.log(e)
-      }
-      setIsLoading(false);
-    }
     getLaunchesData();
+    return () => {
+      setData([]);
+    };
   }, [])
+
+  const getLaunchesData = async () => {
+    setIsLoading(true);
+    try {
+      const x = await getLaunches();
+      setData(x)
+    } catch (e) {
+      console.log(e)
+    }
+    setIsLoading(false);
+  }
 
   return (
     <Layout>

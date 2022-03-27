@@ -1,0 +1,36 @@
+.Home-content{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.Home-pastlaunches{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+.Home-nextLaunch{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#Home-head{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.ant-card {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum', "tnum";
+  position: relative;
+  background: transparent;
+  border-radius: 2px;
+}

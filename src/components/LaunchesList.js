@@ -8,8 +8,12 @@ export default function LaunchesList(props) {
   const { launches } = props;
   const { loading } = props;
 
-  if ((!launches || launches.length === 0) && loading === false) {
-    return <p>No Launches to display, sorry</p>;
+  if ((!launches || launches.length === 0) && (loading === true)) {
+    return (
+      <h3 id="Launches-head">Wait ! fetching data may take some time ! :)</h3>
+    )
+  } else if ((!launches || launches.length === 0)) {
+    <h3 id="Launches-head">No next Launches to display, sorry</h3>
   }
 
   const columns = [
@@ -23,6 +27,7 @@ export default function LaunchesList(props) {
       title: 'Mission Name',
       dataIndex: 'mission_name',
       width: '35%',
+      render: (mission_name) => (mission_name != "") ? mission_name : 'No mission name found',
       filterDropdown: ({
         setSelectedKeys,
         selectedKeys,
@@ -33,7 +38,7 @@ export default function LaunchesList(props) {
           <>
             <Input
               autoFocus
-              placeholder="Type text here"
+              placeholder="Enter a mission name"
               value={selectedKeys[0]}
               onChange={(e) => {
                 setSelectedKeys(e.target.value ? [e.target.value] : []);
