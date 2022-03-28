@@ -30,7 +30,7 @@ export default function PastLaunchesCards(props) {
       }}
       dataSource={pastLaunches}
       renderItem={item => (
-        <Link className="Navigation-link" to={"/Launch"} >
+        <Link className="Navigation-link" to={`/launch/${item.id}`}>
           <List.Item>
             <Card
               hoverable
@@ -46,7 +46,8 @@ export default function PastLaunchesCards(props) {
             </Card>
           </List.Item>
         </Link>
-      )}
+      )
+      }
     />
   )
 }

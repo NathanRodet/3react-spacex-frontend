@@ -9,10 +9,10 @@ export default function Navigation() {
   return (
     <Menu theme="dark" mode="horizontal">
       <Menu.Item key="home" icon={<HomeOutlined />}>
-        <Link className="Navigation-link" to="/"> Home </Link>
+        <Link className="Navigation-link" to="/index"> Home </Link>
       </Menu.Item>
       <Menu.Item key="launches" icon={<RocketOutlined />}>
-        <Link className="Navigation-link" to="/Launches">Launches</Link>
+        <Link className="Navigation-link" to="/launches">Launches</Link>
       </Menu.Item>
     </Menu>
   )
