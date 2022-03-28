@@ -5,7 +5,8 @@
 
 DARK OR COMPACT THEME 
 
-*{
+*
+{
   color: black;
 }
 @import '~antd/dist/antd.css';

@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Table, Button, Input, } from 'antd';
 import { SearchOutlined } from "@ant-design/icons";
+import { Link } from 'react-router-dom';
 import uuid from 'react-uuid';
 
 export default function LaunchesList(props) {
@@ -22,6 +23,7 @@ export default function LaunchesList(props) {
       dataIndex: 'id',
       key: 'id',
       width: '15%',
+      render: (id) => (id != "") ? <Link to={`/launch/${id}`}>{id}</Link> : 'No mission name found',
     },
     {
       title: 'Mission Name',
@@ -103,5 +105,5 @@ export default function LaunchesList(props) {
     console.log('params', pagination, filters, sorter, extra);
   }
 
-  return (<Table columns={columns} rowKey={() => uuid()} dataSource={launches} onChange={onChange} />)
+  return (<Table columns={columns} rowKey={() => uuid()} dataSource={launches} onChange={onChange} onClick />)
 }

@@ -1,4 +1,4 @@
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './styles/pages/app.css';
 import Home from './pages/Home.js';
 import Launches from './pages/Launches.js';
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/index" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/launch" element={<Launch />}>
           <Route path=":launchid" element={<LaunchDetails />} />
         </Route>

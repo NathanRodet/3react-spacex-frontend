@@ -18,23 +18,25 @@ export default function NextLaunchCard(props) {
   }
 
   return (
-    <Card
-      hoverable
-      title={nextLaunch.mission_name}
-      style={{ width: 240 }}
-      cover={<img width="240" height="240" alt="mission patch small" src={(nextLaunch.links.mission_patch_small != null) ? nextLaunch.links.mission_patch_small : NotfoundImage} />}
-    >
-      <span>
-        SITE NAME : {(nextLaunch.launch_site.site_name != "") ? nextLaunch.launch_site.site_name : "No site name provided"}
-      </span>
-      <br />
-      <span>
-        ROCKET NAME : {(nextLaunch.rocket.rocket_name != "") ? nextLaunch.rocket.rocket_name : "No rocket name provided"}
-      </span>
-      <br />
-      <span>
-        DATE : {moment.unix(nextLaunch.launch_date_unix).format("MM/DD/YYYY")}
-      </span>
-    </Card>
+    <Link className="Navigation-link" to={`/launch/${nextLaunch.id}`}>
+      <Card
+        hoverable
+        title={nextLaunch.mission_name}
+        style={{ width: 240 }}
+        cover={<img width="240" height="240" alt="mission patch small" src={(nextLaunch.links.mission_patch_small != null) ? nextLaunch.links.mission_patch_small : NotfoundImage} />}
+      >
+        <span>
+          SITE NAME : {(nextLaunch.launch_site.site_name != "") ? nextLaunch.launch_site.site_name : "No site name provided"}
+        </span>
+        <br />
+        <span>
+          ROCKET NAME : {(nextLaunch.rocket.rocket_name != "") ? nextLaunch.rocket.rocket_name : "No rocket name provided"}
+        </span>
+        <br />
+        <span>
+          DATE : {moment.unix(nextLaunch.launch_date_unix).format("MM/DD/YYYY")}
+        </span>
+      </Card>
+    </Link>
   )
 }
