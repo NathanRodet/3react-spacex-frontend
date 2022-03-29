@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Navigation from '../components/Navigation';
 import getLaunchById from '../api/getLaunchById';
 import '../styles/pages/launch.css';
@@ -29,7 +29,6 @@ export default function Launch() {
       console.log(e);
     }
     setIsLoading(false);
-    console.log(launchData);
   }
 
   return (
@@ -39,9 +38,8 @@ export default function Launch() {
       </Header>
       <Content className="Launch-body">
         <div className="Launch-body">
-          <h1 id="Launch-head">Launch {launchid} - {(launchData.mission_name) ? launchData.mission_name : "No mission name detected"}</h1>
           <div className="Launch-card">
-            <LaunchDetails launch={launchData} isLoading={isLoading} />
+            <LaunchDetails launch={launchData} loading={isLoading} />
           </div>
         </div>
       </Content>

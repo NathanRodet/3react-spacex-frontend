@@ -1,14 +1,16 @@
 import React from 'react';
 import moment from 'moment';
 import '../styles/components/launchdetails.css';
-import { Descriptions, Badge } from 'antd';
+import { Descriptions, Collapse } from 'antd';
+
+const { Panel } = Collapse;
+
+function callback(key) {
+}
 
 export default function LaunchDetails(props) {
   const { launch } = props;
   const { loading } = props;
-
-  console.log(launch);
-  console.log(loading);
 
   if ((!launch || launch.length === 0) && (loading === true)) {
     return (
@@ -22,34 +24,58 @@ export default function LaunchDetails(props) {
 
   //If the first_stage was used for other mission you should allow the user to click on it and display the list of all mission done by this first_stage
   //(display all missions ID and name, first flight date, and some 2 others).
+
   return (
     <div>
+      <h1 id="Launch-head">Launch {launch.id} - {(launch.mission_name) ? launch.mission_name : "No mission name detected"}</h1>
       <Descriptions layout="vertical" bordered>
-        <Descriptions.Item label="Launch Site">
+        <Descriptions.Item label={<b>Launch Site</b>}>
           {(launch.launch_site.site_name_long) ? (launch.launch_site.site_name_long) : "No full site name provided"} - {(launch.launch_site.site_name) ? (launch.launch_site.site_name) : "No short site name provided"}
         </Descriptions.Item>
-        <Descriptions.Item label="Billing Mode">
-
+        <Descriptions.Item label={<b>Date</b>}>
+          {moment.unix(launch.launch_date_unix).format("DD/MM/YYYY")}
         </Descriptions.Item>
-        <Descriptions.Item label="Date">
-          {moment.unix(launch.launch_date_unix).format("MM/DD/YYYY")}
+        <Descriptions.Item label={<b>Launch time</b>}>
+          {moment.unix(launch.static_fire_date_unix).format("h:mm:ss a")}
         </Descriptions.Item>
-        <Descriptions.Item label="Order time">
-          2018-04-24 18:00:00
+        <Descriptions.Item label={<b>Rocket Name</b>}>
+          {(launch.rocket.rocket_name) ? (launch.rocket.rocket_name) : "No rocket name provided"}
         </Descriptions.Item>
-        <Descriptions.Item label="Usage Time" span={2}>
-          2019-04-24 18:00:00
+        <Descriptions.Item label={<b>Rocket Type</b>}>
+          {(launch.rocket.rocket_type) ? (launch.rocket.rocket_type) : "No rocket type provided"}
         </Descriptions.Item>
-        <Descriptions.Item label="Status" span={3}>
-          <Badge status="processing" text="Running" />
+        <Descriptions.Item label={<b>Video Link</b>}>
+          {(launch.links.video_link) ? (<a href={launch.links.video_link}>{launch.links.video_link}</a>) : "No video link provided"}
         </Descriptions.Item>
-        <Descriptions.Item label="Negotiated Amount">$80.00</Descriptions.Item>
-        <Descriptions.Item label="Discount">$20.00</Descriptions.Item>
-        <Descriptions.Item label="Official Receipts">$60.00</Descriptions.Item>
-        <Descriptions.Item label="Mission Details">
+        <Descriptions.Item label={<b>Mission Details</b>}>
           {(launch.details) ? (launch.details) : "No details provided"}
         </Descriptions.Item>
       </Descriptions>
-    </div>
+      <h1 id="Launch-head">Rocket Stage</h1>
+      <Descriptions layout="vertical" bordered>
+        <Descriptions.Item label={<b>Core ID</b>}>
+          {(launch.rocket.first_stage.cores[0].core.id) ? (launch.rocket.first_stage.cores[0].core.id) : "No rocket core ID provided"}
+        </Descriptions.Item>
+        <Descriptions.Item label={<b>Status</b>}>
+          {(launch.rocket.first_stage.cores[0].core.status) ? (launch.rocket.first_stage.cores[0].core.status) : "No status provided"}
+        </Descriptions.Item>
+        <Descriptions.Item label={<b>Water Landing</b>}>
+          {(launch.rocket.first_stage.cores[0].core.water_landing) ? "Yes" : "No"}
+        </Descriptions.Item>
+        <Descriptions.Item label={<b>Missions</b>}>
+          <Collapse defaultActiveKey={['1']} onChange={callback}>
+            {
+              launch.rocket.first_stage.cores[0].core.missions.map((element) => {
+                return (
+                  <Panel header={(element.name) ? (element.name) : "No mission name provided"} key={element.name}>
+                    {(element.flight) ? ("Nombre de vol : " + element.flight) : "No flights provided"}
+                  </Panel>
+                )
+              })
+            }
+          </Collapse>
+        </Descriptions.Item>
+      </Descriptions>
+    </div >
   )
 }

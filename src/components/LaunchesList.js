@@ -97,12 +97,12 @@ export default function LaunchesList(props) {
       width: '15%',
       sorter:
         (a, b) => a.launch_date_unix - b.launch_date_unix,
-      render: (launch_date_unix) => (moment.unix(launch_date_unix).format("MM/DD/YYYY"))
+      render: (launch_date_unix) => (moment.unix(launch_date_unix).format("DD/MM/YYYY"))
     }
   ];
 
   function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra);
+    //console.log('params', pagination, filters, sorter, extra);
   }
 
   return (<Table columns={columns} rowKey={() => uuid()} dataSource={launches} onChange={onChange} onClick />)
