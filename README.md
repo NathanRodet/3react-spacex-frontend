@@ -40,3 +40,7 @@ To test
 - npm test
 To build 
 - npm run build
+
+You can publish a static version of the project in local,  do :
+- npm install -g serve
+- serve -s build

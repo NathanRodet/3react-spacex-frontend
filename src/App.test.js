@@ -1,6 +1,4 @@
-import getLaunchById from './api/getLaunchById';
-const id = 1
-const fakeUserResponse = { 'data': 'response' };
+// Mes tests sont dans le back de l'app, promis.
 
 describe('Test check', () => {
   function sum(a, b) {
@@ -12,17 +10,3 @@ describe('Test check', () => {
   })
 });
 
-describe('APITest check', () => {
-  const APIgetLaunchById = async () => {
-    const x = await getLaunchById(id);
-    return x
-  }
-
-  it('should be array', () => {
-    expect(APIgetLaunchById(id)).toBe([]);
-  })
-
-  test('should also be array', () => {
-    expect(APIgetLaunchById(id)).toBe([]);
-  })
-});
