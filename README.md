@@ -1,4 +1,4 @@
-# supinfo-react specs
+# Application specs
 
 The index page should display the next launch and the last three launches (simple card - image/logo, date, launcher used).
 
@@ -16,14 +16,6 @@ Testing is important. You are required to implement a few tests on your project.
 
 API spec: https://api.spacex.land/rest/#/ 
 API: https://api.spacex.land/rest/
-
-# Dependancies installed
-
-- antd: "^4.19.3"
-- axios: "^0.26.1"
-- moment: "^2.29.1"
-- react-router-dom: "^6.2.2"
-- react-uuid: "^1.0.2"
 
 # Installation steps :
 
